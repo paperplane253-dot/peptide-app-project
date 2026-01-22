@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { Home } from './components/Home';
+import { Blog } from './components/Blog';
 import { LandingPage } from './components/LandingPage';
 import { Calculator } from './components/Calculator';
 import { InteractiveLedger } from './components/InteractiveLedger'; 
 import { AnalyticsChart } from './components/AnalyticsChart';
 import { Guide } from './components/Guide';
-import { Activity, Beaker, LineChart, BookOpen, ShieldCheck, Lock, Trash2, Package, Plus, Download, ChevronLeft } from 'lucide-react';
+import { Activity, Beaker, LineChart, BookOpen, ShieldCheck, Lock, Trash2, Package, Download, ChevronLeft } from 'lucide-react';
 
-// Wrap the existing App logic in a "PeptideApp" component
 const PeptideApp = () => {
   const [isAuthorized, setIsAuthorized] = useState(false);
   const [isApex, setIsApex] = useState(false);
@@ -17,7 +17,6 @@ const PeptideApp = () => {
   const [activeTab, setActiveTab] = useState<'calc' | 'journal' | 'stats' | 'protocols'>('calc');
   const [showVault, setShowVault] = useState(false);
   const [logs, setLogs] = useState<any[]>([]);
-  
   const [inventory, setInventory] = useState<Record<string, number>>(() => {
     const saved = localStorage.getItem('peptide_inventory');
     return saved ? JSON.parse(saved) : { 'Tirzepatide': 0, 'Semaglutide': 0, 'Retatrutide': 0 };
@@ -73,7 +72,7 @@ const PeptideApp = () => {
     localStorage.setItem('peptide_inventory', JSON.stringify(updated));
   };
 
-const exportData = () => {
+  const exportData = () => {
     const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(logs, null, 2));
     const downloadAnchorNode = document.createElement('a');
     downloadAnchorNode.setAttribute("href", dataStr);
@@ -89,10 +88,28 @@ const exportData = () => {
       localStorage.removeItem('peptide_os_logs');
     }
   };
+
+  if (!isAuthorized && showLanding) return <LandingPage onEnter={() => setShowLanding(false)} />;
+  if (!isAuthorized && !showLanding) {
+    return (
+      <div className="min-h-screen bg-black flex flex-col items-center justify-center text-white p-4">
+        <button onClick={() => window.location.href='/'} className="absolute top-8 left-8 flex items-center gap-2 text-slate-500 hover:text-[#22d3ee] transition-colors text-[10px] font-black uppercase tracking-widest">
+          <ChevronLeft size={14} /> Exit to Hub
+        </button>
+        <div className="bg-[#0d0f14] border border-white/10 p-10 rounded-[3rem] w-full max-w-sm text-center">
+          <Lock className="text-[#22d3ee] w-12 h-12 mx-auto mb-6 opacity-50" />
+          <h2 className="text-3xl font-black uppercase italic mb-8 tracking-tighter">Terminal</h2>
+          <form onSubmit={handleLogin} className="space-y-4">
+            <input type="text" value={accessCode} onChange={(e) => setAccessCode(e.target.value)} placeholder="ENTER KEY" className="w-full bg-black border border-white/10 p-5 rounded-2xl text-center text-white font-black" />
+            <button type="submit" className="w-full bg-[#22d3ee] text-black font-black uppercase py-5 rounded-2xl">Connect</button>
+          </form>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-[#020202] text-white pb-32">
-       {/* ... Your existing App JSX (Nav, Main, Navigation Bar) ... */}
-       {/* Use the same code you had in your return statement before */}
        <nav className="px-6 py-6 flex justify-between items-center max-w-4xl mx-auto sticky top-0 z-[110] bg-black/50 backdrop-blur-md">
         <button onClick={() => window.location.href='/'} className="flex items-center gap-2">
           <Activity className="text-[#22d3ee] w-5 h-5" />
@@ -103,15 +120,13 @@ const exportData = () => {
         </button>
       </nav>
 
-     {showVault && (
+      {showVault && (
         <div className="fixed inset-0 z-[200] flex items-center justify-center p-4 bg-black/95 backdrop-blur-sm">
           <div className="bg-[#0d0f14] border border-[#22d3ee]/30 p-8 rounded-[2.5rem] max-w-md w-full">
              <div className="flex justify-between items-center mb-6">
                <h3 className="text-xl font-black uppercase italic text-[#22d3ee]">Vault</h3>
                <button onClick={() => setShowVault(false)} className="text-slate-500 font-bold text-xs uppercase tracking-widest text-[10px]">Close</button>
              </div>
-             
-             {/* Inventory List */}
              {Object.entries(inventory).map(([comp, amt]) => (
                 <div key={comp} className="flex justify-between items-center bg-black/40 p-4 rounded-2xl border border-white/5 mb-2">
                   <div className="text-[10px] font-black text-white uppercase opacity-60">{comp}</div>
@@ -119,8 +134,6 @@ const exportData = () => {
                   <button onClick={() => updateStock(comp, 5)} className="p-2 bg-[#22d3ee]/10 rounded-lg text-[#22d3ee] hover:bg-[#22d3ee]/20">+</button>
                 </div>
              ))}
-
-             {/* Action Buttons */}
              <div className="grid grid-cols-2 gap-4 mt-8">
                <button onClick={exportData} className="flex items-center justify-center gap-2 bg-white/5 border border-white/10 p-4 rounded-2xl text-[10px] font-black uppercase tracking-widest hover:bg-white/10 transition-colors">
                  <Download size={14} /> Export
@@ -154,14 +167,13 @@ const exportData = () => {
   );
 };
 
-// The NEW App component that handles the routes
 export default function App() {
   return (
     <Router>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/peptides" element={<PeptideApp />} />
-        {/* Redirect any other address to home */}
+        <Route path="/blog" element={<Blog />} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </Router>

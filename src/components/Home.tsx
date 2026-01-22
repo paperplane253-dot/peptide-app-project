@@ -80,7 +80,10 @@ export const Home = () => {
       {/* Footer / Blog Link */}
       <div className="mt-20 text-center">
         <p className="text-slate-600 text-xs uppercase font-black tracking-widest mb-4">Intel-Apex Intelligence Briefings</p>
-        <button className="text-white hover:text-[#22d3ee] transition-colors font-bold uppercase italic text-sm border-b border-[#22d3ee]/30 pb-1">
+        <button 
+          onClick={() => navigate('/blog')}
+          className="text-white hover:text-[#22d3ee] transition-colors font-bold uppercase italic text-sm border-b border-[#22d3ee]/30 pb-1"
+        >
           Access the Knowledge Base
         </button>
       </div>
