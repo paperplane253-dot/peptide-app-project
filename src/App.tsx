@@ -73,27 +73,22 @@ const PeptideApp = () => {
     localStorage.setItem('peptide_inventory', JSON.stringify(updated));
   };
 
-  const exportData = () => { /* ... existing export logic ... */ };
+const exportData = () => {
+    const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(logs, null, 2));
+    const downloadAnchorNode = document.createElement('a');
+    downloadAnchorNode.setAttribute("href", dataStr);
+    downloadAnchorNode.setAttribute("download", "INTEL-SYSTEM-EXPORT.json");
+    document.body.appendChild(downloadAnchorNode);
+    downloadAnchorNode.click();
+    downloadAnchorNode.remove();
+  };
 
-  if (!isAuthorized && showLanding) return <LandingPage onEnter={() => setShowLanding(false)} />;
-  if (!isAuthorized && !showLanding) {
-    return (
-      <div className="min-h-screen bg-black flex flex-col items-center justify-center text-white p-4">
-        <button onClick={() => window.location.href='/'} className="absolute top-8 left-8 flex items-center gap-2 text-slate-500 hover:text-[#22d3ee] transition-colors text-[10px] font-black uppercase tracking-widest">
-          <ChevronLeft size={14} /> Exit to Hub
-        </button>
-        <div className="bg-[#0d0f14] border border-white/10 p-10 rounded-[3rem] w-full max-w-sm text-center">
-          <Lock className="text-[#22d3ee] w-12 h-12 mx-auto mb-6 opacity-50" />
-          <h2 className="text-3xl font-black uppercase italic mb-8 tracking-tighter">Terminal</h2>
-          <form onSubmit={handleLogin} className="space-y-4">
-            <input type="text" value={accessCode} onChange={(e) => setAccessCode(e.target.value)} placeholder="ENTER KEY" className="w-full bg-black border border-white/10 p-5 rounded-2xl text-center text-white font-black" />
-            <button type="submit" className="w-full bg-[#22d3ee] text-black font-black uppercase py-5 rounded-2xl">Connect</button>
-          </form>
-        </div>
-      </div>
-    );
-  }
-
+  const wipeData = () => {
+    if (window.confirm("CRITICAL: THIS WILL PERMANENTLY ERASE ALL LEDGER DATA. PROCEED?")) {
+      setLogs([]);
+      localStorage.removeItem('peptide_os_logs');
+    }
+  };
   return (
     <div className="min-h-screen bg-[#020202] text-white pb-32">
        {/* ... Your existing App JSX (Nav, Main, Navigation Bar) ... */}
@@ -108,20 +103,32 @@ const PeptideApp = () => {
         </button>
       </nav>
 
-      {showVault && (
+     {showVault && (
         <div className="fixed inset-0 z-[200] flex items-center justify-center p-4 bg-black/95 backdrop-blur-sm">
           <div className="bg-[#0d0f14] border border-[#22d3ee]/30 p-8 rounded-[2.5rem] max-w-md w-full">
              <div className="flex justify-between items-center mb-6">
                <h3 className="text-xl font-black uppercase italic text-[#22d3ee]">Vault</h3>
-               <button onClick={() => setShowVault(false)} className="text-slate-500 font-bold text-xs uppercase tracking-widest">Close</button>
+               <button onClick={() => setShowVault(false)} className="text-slate-500 font-bold text-xs uppercase tracking-widest text-[10px]">Close</button>
              </div>
+             
+             {/* Inventory List */}
              {Object.entries(inventory).map(([comp, amt]) => (
                 <div key={comp} className="flex justify-between items-center bg-black/40 p-4 rounded-2xl border border-white/5 mb-2">
                   <div className="text-[10px] font-black text-white uppercase opacity-60">{comp}</div>
                   <div className="text-lg font-black text-[#22d3ee]">{amt.toFixed(1)} MG</div>
-                  <button onClick={() => updateStock(comp, 5)} className="p-2 bg-[#22d3ee]/10 rounded-lg text-[#22d3ee]">+</button>
+                  <button onClick={() => updateStock(comp, 5)} className="p-2 bg-[#22d3ee]/10 rounded-lg text-[#22d3ee] hover:bg-[#22d3ee]/20">+</button>
                 </div>
              ))}
+
+             {/* Action Buttons */}
+             <div className="grid grid-cols-2 gap-4 mt-8">
+               <button onClick={exportData} className="flex items-center justify-center gap-2 bg-white/5 border border-white/10 p-4 rounded-2xl text-[10px] font-black uppercase tracking-widest hover:bg-white/10 transition-colors">
+                 <Download size={14} /> Export
+               </button>
+               <button onClick={wipeData} className="flex items-center justify-center gap-2 bg-red-500/5 border border-red-500/20 p-4 rounded-2xl text-[10px] font-black uppercase tracking-widest text-red-500 hover:bg-red-500/10 transition-colors">
+                 <Trash2 size={14} /> Wipe
+               </button>
+             </div>
           </div>
         </div>
       )}
