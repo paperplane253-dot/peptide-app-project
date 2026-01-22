@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ChevronLeft, Calendar, Share2, AlertTriangle, ShieldCheck, Zap, ArrowRight, BookOpen, Microscope, Globe } from 'lucide-react';
+import { ChevronLeft, Calendar, Share2, AlertTriangle, ShieldCheck, Zap, ArrowRight, BookOpen, Microscope, Globe, FileText } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
 export const Blog = () => {
@@ -25,10 +25,10 @@ export const Blog = () => {
             <h2 className="text-[#22d3ee] text-xs font-black uppercase tracking-[0.2em] mb-6 flex items-center gap-2">
               <Microscope size={14} /> II. A Trip Down Memory Lane
             </h2>
-            <div className="space-y-4 text-sm">
+            <div className="space-y-4 text-sm text-slate-400">
               <p><span className="text-white font-black italic underline decoration-[#22d3ee]">19th Century:</span> Scientists began unraveling protein compositions, leading to the discovery of "peptide bonds." Emil Fischer coined the term "peptide."</p>
               <p><span className="text-white font-black italic underline decoration-[#22d3ee]">Early 20th Century:</span> Discovery of hormones like secretin, insulin, and oxytocin—the "bonding hormone."</p>
-              <p><span className="text-white font-black italic underline decoration-[#22d3ee]">Mid-20th Century:</span> Frederick Sanger sequenced insulin; Robert Merrifield developed solid-phase synthesis, opening new research avenues.</p>
+              <p><span className="text-white font-black italic underline decoration-[#22d3ee]">Mid-20th Century:</span> Frederick Sanger sequenced insulin; Robert Merrifield developed solid-phase synthesis.</p>
             </div>
           </section>
 
@@ -36,33 +36,16 @@ export const Blog = () => {
             <h3 className="text-2xl font-black uppercase italic text-white tracking-tight text-center underline decoration-[#22d3ee]/30 decoration-4 underline-offset-8">III. Body's Hidden Powers</h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <div className="p-6 bg-white/5 rounded-2xl border border-white/10">
-                <span className="text-[#22d3ee] font-black text-[10px] block mb-2 tracking-widest uppercase">Skincare</span>
-                <p className="text-xs text-slate-400 font-bold italic">GHK-Cu & Matrixyl</p>
-                <p className="text-xs text-slate-500 mt-2">Signaling cells to act more youthfully and boosting collagen production.</p>
+                <span className="text-[#22d3ee] font-black text-[10px] block mb-2 tracking-widest uppercase text-center">Skincare</span>
+                <p className="text-xs text-slate-500 mt-2 text-center leading-relaxed">GHK-Cu & Matrixyl signaling cells to act youthfully.</p>
               </div>
-              <div className="p-6 bg-white/5 rounded-2xl border border-white/10">
+              <div className="p-6 bg-white/5 rounded-2xl border border-white/10 text-center">
                 <span className="text-[#22d3ee] font-black text-[10px] block mb-2 tracking-widest uppercase">Fitness</span>
-                <p className="text-xs text-slate-400 font-bold italic">BPC-157 & Ipamorelin</p>
-                <p className="text-xs text-slate-500 mt-2">Promoted for muscle growth, fat loss, and enhancing post-workout recovery.</p>
+                <p className="text-xs text-slate-500 mt-2 leading-relaxed">BPC-157 & Ipamorelin for recovery and growth.</p>
               </div>
-              <div className="p-6 bg-white/5 rounded-2xl border border-white/10">
+              <div className="p-6 bg-white/5 rounded-2xl border border-white/10 text-center">
                 <span className="text-[#22d3ee] font-black text-[10px] block mb-2 tracking-widest uppercase">Therapies</span>
-                <p className="text-xs text-slate-400 font-bold italic">GLP-1 Agonists</p>
-                <p className="text-xs text-slate-500 mt-2">Revolutionary tools for diabetes management and weight loss.</p>
-              </div>
-            </div>
-          </section>
-
-          <section className="space-y-6">
-            <h3 className="text-2xl font-black uppercase italic text-white tracking-tight">IV. The Future: Innovation</h3>
-            <div className="space-y-3">
-              <div className="flex gap-4 p-4 bg-white/5 rounded-xl border border-white/10 items-center">
-                <Zap className="text-[#22d3ee]" size={18} />
-                <p className="text-sm text-slate-400"><span className="text-white font-bold italic">AI Design:</span> Machine learning analyzing vast datasets to predict optimal sequences.</p>
-              </div>
-              <div className="flex gap-4 p-4 bg-white/5 rounded-xl border border-white/10 items-center">
-                <Globe className="text-[#22d3ee]" size={18} />
-                <p className="text-sm text-slate-400"><span className="text-white font-bold italic">Precision Delivery:</span> Nanoparticles delivering peptides directly to sites of action.</p>
+                <p className="text-xs text-slate-500 mt-2 leading-relaxed">GLP-1 Agonists for metabolic optimization.</p>
               </div>
             </div>
           </section>
@@ -82,43 +65,22 @@ export const Blog = () => {
               <AlertTriangle size={14} /> Warning: Critical Risk Assessment
             </div>
             <p className="text-sm text-slate-300 leading-relaxed font-bold italic">
-              The "Grey Market" operates online, offering peptides labeled "for research purposes only" to circumvent FDA oversight. Use of these substances carries significant risk.
+              The "Grey Market" operates online, offering peptides labeled "for research purposes only" to circumvent FDA oversight.
             </p>
           </section>
 
           <section className="space-y-6">
             <h3 className="text-2xl font-black uppercase italic text-white tracking-tight underline decoration-red-500/30 underline-offset-8">I. Drivers of Hype</h3>
             <div className="space-y-4">
-              <p><span className="text-[#22d3ee] font-black italic">Weight Loss Surge:</span> Mimics of approved drugs (Ozempic-alikes) have seen online ads increase by 208% from 2023 to 2024.</p>
-              <p><span className="text-[#22d3ee] font-black italic">Biohacking:</span> The pursuit of self-optimization using BPC-157 and TB-500 for recovery without regulatory vetting.</p>
-            </div>
-          </section>
-
-          <section className="space-y-6">
-            <h3 className="text-2xl font-black uppercase italic text-white tracking-tight">II. Medical & Safety Concerns</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="space-y-2">
-                <span className="text-white font-black text-[10px] uppercase tracking-widest flex items-center gap-2"><div className="w-1 h-1 bg-red-500"></div> Purity Issues</span>
-                <p className="text-xs text-slate-500 italic">Analyses reveal bacteria, heavy metals, or the complete absence of active ingredients.</p>
-              </div>
-              <div className="space-y-2">
-                <span className="text-white font-black text-[10px] uppercase tracking-widest flex items-center gap-2"><div className="w-1 h-1 bg-red-500"></div> Dosage Inaccuracy</span>
-                <p className="text-xs text-slate-500 italic">Incorrect concentrations leading to ineffective or dangerously high doses.</p>
-              </div>
+              <p><span className="text-[#22d3ee] font-black italic uppercase text-xs tracking-widest">Weight Loss Surge:</span> Mimics of approved drugs have seen online ads increase by 208%.</p>
+              <p><span className="text-[#22d3ee] font-black italic uppercase text-xs tracking-widest">Biohacking:</span> Self-optimization using BPC-157 and TB-500 without regulatory vetting.</p>
             </div>
           </section>
 
           <section className="bg-white/5 border border-white/10 p-8 rounded-[2rem]">
-            <h3 className="text-[#22d3ee] text-xs font-black uppercase tracking-[0.2em] mb-4">III. The Regulatory Crackdown (2025-2026)</h3>
+            <h3 className="text-[#22d3ee] text-xs font-black uppercase tracking-[0.2em] mb-4">II. Regulatory Crackdown (2025-2026)</h3>
             <p className="text-sm text-slate-400 mb-4">Effective January 2025, the FDA has moved compounds like BPC-157 to "Category 2," effectively prohibiting compounding for human use.</p>
-            <p className="text-sm text-slate-400 italic font-bold text-red-400/80">"Research Use Only" is viewed by the FDA as an ineffective attempt to bypass the FD&C Act.</p>
-          </section>
-
-          <section className="space-y-6">
-            <h3 className="text-2xl font-black uppercase italic text-white tracking-tight">IV. Conclusion: Choosing Wisely</h3>
-            <p className="text-slate-400 italic border-l-2 border-[#22d3ee] pl-4">
-              Experts unanimously advise consulting a licensed medical professional and obtaining peptides only from regulated, accredited pharmacies. Discernment and scientific rigor must guide the wellness journey.
-            </p>
+            <p className="text-sm text-red-400/80 font-black uppercase italic">"Research Use Only" is viewed as an ineffective attempt to bypass the law.</p>
           </section>
         </div>
       )
@@ -128,7 +90,7 @@ export const Blog = () => {
   if (selectedPost !== null) {
     const post = posts.find(p => p.id === selectedPost)!;
     return (
-      <div className="min-h-screen bg-[#020202] text-white pb-20">
+      <div className="min-h-screen bg-[#020202] text-white">
         <nav className="max-w-3xl mx-auto px-6 py-8 flex items-center justify-between sticky top-0 bg-[#020202]/90 backdrop-blur-md z-[100]">
           <button onClick={() => setSelectedPost(null)} className="flex items-center gap-2 text-slate-500 hover:text-[#22d3ee] transition-colors text-[10px] font-black uppercase tracking-[0.2em]">
             <ChevronLeft size={14} /> Back to Briefings
@@ -137,19 +99,16 @@ export const Blog = () => {
         </nav>
         <header className="max-w-3xl mx-auto px-6 pt-10 pb-16">
           <div className="text-[#22d3ee] text-[10px] font-black uppercase tracking-[0.3em] mb-6">{post.tag}</div>
-          <h1 className="text-4xl md:text-6xl font-black uppercase italic tracking-tighter leading-tight mb-6">{post.title}</h1>
+          <h1 className="text-4xl md:text-5xl font-black uppercase italic tracking-tighter leading-tight mb-6">{post.title}</h1>
           <p className="text-xl text-slate-400 font-medium italic border-l-4 border-[#22d3ee] pl-6 py-2">{post.subtitle}</p>
         </header>
         <article className="max-w-3xl mx-auto px-6 text-slate-300 text-lg leading-relaxed">{post.content}</article>
         
-        {/* Unified CTA */}
-        <div className="max-w-3xl mx-auto px-6 mt-10">
+        <div className="max-w-3xl mx-auto px-6 mt-10 pb-20">
           <div className="bg-[#22d3ee] p-1 rounded-[2.5rem]">
             <div className="bg-[#020202] p-10 rounded-[2.3rem] text-center border border-black shadow-2xl">
-              <Zap className="text-[#22d3ee] mx-auto mb-6" size={32} />
-              <h3 className="text-3xl font-black uppercase italic mb-4">Precision <span className="text-[#22d3ee]">Protocol</span></h3>
-              <p className="text-slate-500 text-sm mb-8 font-medium">Standardize your research with the Intel-Apex terminal.</p>
-              <button onClick={() => navigate('/peptides')} className="w-full bg-[#22d3ee] text-black font-black uppercase py-5 rounded-2xl text-[10px] tracking-[0.2em] hover:brightness-110 transition-all">Launch Intelligence Terminal</button>
+              <h3 className="text-3xl font-black uppercase italic mb-8">Launch <span className="text-[#22d3ee]">Terminal</span></h3>
+              <button onClick={() => navigate('/peptides')} className="w-full bg-[#22d3ee] text-black font-black uppercase py-5 rounded-2xl text-[10px] tracking-[0.2em]">Launch Intelligence Terminal</button>
             </div>
           </div>
         </div>
@@ -163,10 +122,6 @@ export const Blog = () => {
         <button onClick={() => navigate('/')} className="flex items-center gap-2 text-slate-500 hover:text-[#22d3ee] transition-colors text-[10px] font-black uppercase tracking-[0.2em] mb-12">
           <ChevronLeft size={14} /> Exit to Hub
         </button>
-        <div className="flex items-center gap-4 mb-4">
-           <BookOpen className="text-[#22d3ee]" size={24} />
-           <span className="text-[10px] font-black uppercase tracking-[0.4em] text-slate-500 underline decoration-[#22d3ee]/50 underline-offset-4">Public Archive</span>
-        </div>
         <h1 className="text-5xl md:text-7xl font-black uppercase italic tracking-tighter mb-16 leading-none">Intelligence <span className="text-[#22d3ee]">Briefings</span></h1>
         
         <div className="grid grid-cols-1 gap-6">
@@ -176,17 +131,14 @@ export const Blog = () => {
               onClick={() => setSelectedPost(post.id)}
               className="w-full text-left bg-[#0d0f14] border border-white/5 p-8 rounded-[2.5rem] hover:border-[#22d3ee]/30 transition-all group relative overflow-hidden"
             >
-              <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-opacity">
-                <FileText size={80} />
-              </div>
               <div className="flex justify-between items-start mb-6">
-                <span className="text-[#22d3ee] text-[10px] font-black uppercase tracking-widest px-3 py-1 bg-[#22d3ee]/5 rounded-full border border-[#22d3ee]/10">{post.tag}</span>
+                <span className="text-[#22d3ee] text-[10px] font-black uppercase tracking-widest">{post.tag}</span>
                 <span className="text-slate-600 text-[10px] font-black uppercase">{post.date}</span>
               </div>
               <h2 className="text-3xl font-black uppercase italic mb-4 group-hover:text-[#22d3ee] transition-colors tracking-tighter">{post.title}</h2>
               <p className="text-slate-500 text-sm mb-8 font-medium italic">{post.subtitle}</p>
-              <div className="flex items-center gap-2 text-white text-[10px] font-black uppercase tracking-widest border-t border-white/5 pt-6 w-fit group-hover:text-[#22d3ee] transition-colors">
-                View Full Briefing <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+              <div className="flex items-center gap-2 text-white text-[10px] font-black uppercase tracking-widest">
+                Read Briefing <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
               </div>
             </button>
           ))}
