@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { Analytics } from '@vercel/analytics/react';
 import { Home } from './components/Home';
 import { Blog } from './components/Blog';
 import { LandingPage } from './components/LandingPage';
@@ -176,6 +177,7 @@ export default function App() {
         <Route path="/blog" element={<Blog />} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
+      <Analytics />
     </Router>
   );
 }
